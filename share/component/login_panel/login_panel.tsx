@@ -114,7 +114,7 @@ function Login_Panel() {
 
   return (
     <div style={{display:'flex',justifyContent:'center',margin: '10% auto'}}>
-        <Panel header="Login" style={{fontSize:'2.3vw'}}>
+        <Panel header="Login" style={{fontSize:'13px'}}>
             <form onSubmit={form.handleSubmit(handleSubmit)} style={{textAlign:'center'}} >
                 <Toast ref={toast} />
                 <Controller
@@ -141,7 +141,7 @@ function Login_Panel() {
                     render={({ field, fieldState }) => (
                         <>
                             <span className="p-float-label" style={{display:'inline-flex'}}>
-                                <Password id={field.name} {...field} style={{fontSize:'2.3vw'}} inputRef={field.ref} className={classNames('p-inputtext-lg',{ 'p-invalid': fieldState.error })} feedback={false} toggleMask  />
+                                <Password id={field.name} {...field} style={{fontSize:'12px'}} inputRef={field.ref} className={classNames('p-inputtext-lg',{ 'p-invalid': fieldState.error })} feedback={false} toggleMask  />
                                 <label htmlFor="field.name">Password</label>
                             </span>
                             <br/>
@@ -151,8 +151,8 @@ function Login_Panel() {
                 />
                 <br/>
 
-                <div style={{textAlign:'end'}}>
-                  <Dialog header="Are you forgot your password?" visible={forgetDialogVisible} style={{ width: '30vw', textAlign:'center'}} onHide={() => setForgetDialogVisible(false)} footer={forgetfooterContent}>
+                <div style={{textAlign:'center'}}>
+                  <Dialog header="Are you forgot your password?" visible={forgetDialogVisible} style={{ fontSize: '13px', textAlign:'center'}} onHide={() => setForgetDialogVisible(false)} footer={forgetfooterContent}>
                       <p className="m-0">
                         Fill in your email and username. <br/>
                         New Password will be send to your email.
@@ -168,10 +168,10 @@ function Login_Panel() {
                           <label htmlFor="email">Email</label>
                       </span>
                   </Dialog>
-                  <Button label="Forget Password?" onClick={() => setForgetDialogVisible(true)} type="button" severity="secondary" text style={{fontSize:'1.3vw'}}  />
+                  <Button label="Forget Password?" onClick={() => setForgetDialogVisible(true)} type="button" severity="secondary" text style={{fontSize:'12px'}}  />
                 </div>        
                 <br/>     
-                <Button label="Login" type="submit" icon="pi pi-arrow-circle-right" className="btn" style={{fontSize:'2vw'}} />
+                <Button label="Login" type="submit" icon="pi pi-arrow-circle-right" className="btn" style={{fontSize:'12px'}} />
                 
             </form>
         </Panel>

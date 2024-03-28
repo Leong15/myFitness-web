@@ -16,6 +16,16 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
+    "/dashboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/page.js"
+    ],
+    "/home/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/home/page.js"
+    ],
     "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
