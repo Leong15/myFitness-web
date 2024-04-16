@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import CustomMenubar from "../../share/component/Menubar/CustomMenubar";
 import "primereact/resources/themes/lara-dark-teal/theme.css";
 
 /* import "primereact/resources/themes/lara-light-indigo/theme.css";  */ //theme
@@ -24,7 +23,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <CustomMenubar />
         {children}
       </body>
     </html>

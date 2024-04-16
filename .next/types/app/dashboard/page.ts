@@ -1,4 +1,4 @@
-// File: C:\Users\user\Desktop\web\myFitness-web\src\app\dashboard\page.tsx
+// File: C:\Users\02010772\Desktop\mywork\my\health\health_front\src\app\dashboard\page.tsx
 import * as entry from '../../../../src/app/dashboard/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

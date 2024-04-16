@@ -1,8 +1,8 @@
-// File: C:\Users\user\Desktop\web\myFitness-web\src\app\home\page.tsx
-import * as entry from '../../../../src/app/home/page.js'
+// File: C:\Users\02010772\Desktop\mywork\my\health\health_front\src\app\home\page.tsx
+import * as entry from '../../../../src/app/(protected)/home/page.jsx'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../../src/app/home/page.js')
+type TEntry = typeof import('../../../../src/app/(protected)/home/page.jsx')
 
 // Check that the entry is a valid entry
 checkFields<Diff<{

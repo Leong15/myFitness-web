@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState,useContext  } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Dialog } from 'primereact/dialog';
+import { useRouter } from "next/navigation";
 
 /* const endpoint = "http://10.10.10.215:8080/order_sla_report_uat"; */
 /* const endpoint = "http://localhost:3000"; */
@@ -77,10 +78,13 @@ function Login_Panel() {
   const defaultValues = { value: "" };
   const form = useForm(defaultValues);
   const errors = form.formState.errors;
+  const router = useRouter();
 
   const handleSubmit = async e => {
     const username = e.username;
     const password = e.password;
+    console.log(e)
+    router.push('/dashboard');
     
 /*     await loginUser({
       username,

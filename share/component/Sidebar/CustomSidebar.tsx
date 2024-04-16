@@ -149,9 +149,9 @@ const CustomSidebar = (props:{to_visible: boolean, onHide:any}) => {
                 <SplitterPanel><strong>Gender:</strong></SplitterPanel>
                 <SplitterPanel><label htmlFor="age" className="font-bold block mb-2">Life Style:</label><Dropdown style={{overflow:'hidden'}} value={selectedLifeStyle} onChange={(e) => handleLifeStyleSelection(e.value)} options={lifeStyle} optionLabel="name" 
                 placeholder="Select Your Life Style" className="w-full md:w-14rem" /></SplitterPanel>
-                <SplitterPanel><label htmlFor="age" className="font-bold block mb-2">Age:</label><InputNumber style={{overflow:'hidden'}} id="age" value={health_Info.age} onValueChange={(e)=>handleAgeChange(e.value)} /></SplitterPanel>
-                <SplitterPanel><strong>Height:</strong><InputNumber style={{overflow:'hidden'}} value={health_Info.height} onValueChange={(e)=>handleHeightChange(e.value)} suffix="cm"/* style={{width:'90%'}} */ /></SplitterPanel>
-                <SplitterPanel><strong>Weight:</strong><InputNumber style={{overflow:'hidden'}} value={health_Info.weight} onValueChange={(e)=>handleWeightChange(e.value)} suffix="kg" /></SplitterPanel>
+                <SplitterPanel><label htmlFor="age" className="font-bold block mb-2">Age:</label><InputNumber style={{overflow:'hidden'}} id="age" value={health_Info.age} onValueChange={(e)=>handleAgeChange(e.value)} disabled/></SplitterPanel>
+                <SplitterPanel><strong>Height:</strong><InputNumber style={{overflow:'hidden'}} value={health_Info.height} onValueChange={(e)=>handleHeightChange(e.value)} suffix="cm" disabled/* style={{width:'90%'}} */ /></SplitterPanel>
+                <SplitterPanel><strong>Weight:</strong><InputNumber style={{overflow:'hidden'}} value={health_Info.weight} onValueChange={(e)=>handleWeightChange(e.value)} suffix="kg" disabled/></SplitterPanel>
                 <SplitterPanel><strong>BMR(基礎代謝率):</strong><br/><div style={{textAlign:'center'}}>{bmr} Cal</div></SplitterPanel>
                 <SplitterPanel><strong>TDEE(總熱量消耗):</strong><br/><div style={{textAlign:'center'}}>{tdee} Cal</div></SplitterPanel>
                 <SplitterPanel><strong>Recived Cal Today:</strong><br/><div style={{textAlign:'center'}}>{health_Info.weight} Cal</div></SplitterPanel>
