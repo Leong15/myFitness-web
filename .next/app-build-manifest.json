@@ -6,20 +6,15 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/not-found": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
-    ],
     "/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/loading.js"
     ],
-    "/(auth)/login/page": [
+    "/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(auth)/login/page.js"
+      "static/chunks/app/not-found.js"
     ],
     "/(protected)/layout": [
       "static/chunks/webpack.js",
@@ -31,10 +26,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/(protected)/dashboard/page.js"
     ],
-    "/(protected)/home/page": [
+    "/(auth)/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(protected)/home/page.js"
+      "static/chunks/app/(auth)/login/page.js"
     ]
   }
 }
