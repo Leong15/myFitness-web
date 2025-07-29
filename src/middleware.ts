@@ -2,9 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
 const protectedRoutes: { [key: string]: string[] } = {
-  '/action_history': ['ADMIN'],
-  '/staff_accounts_info': ['USER','ADMIN'],
-  '/user_management': ['ADMIN'],
+  '/home': ['ADMIN'],
+  '/dashboard': ['USER','ADMIN'],
 };
 
 export async function middleware(req: NextRequest) {
@@ -33,5 +32,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/action_history', '/staff_accounts_info','/user_management'],
+  matcher: ['/home', '/dashboard'],
 };
