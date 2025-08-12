@@ -10,6 +10,7 @@ interface Product {
     name: string;
     fat: string;
     kcal: string;
+    countries: string;
 }
 
 interface FormData {
@@ -18,6 +19,7 @@ interface FormData {
 
 interface OpenFoodFactsProduct {
   product_name: string;
+  countries: string;
   nutriments: {
     fat_100g: string;
     energy_kcal_100g: string;
@@ -33,6 +35,7 @@ export default function HomePage() {
   const [name,setName] = useState('');
   const [fat,setFat] = useState('');
   const [kcal,setKcal] = useState('');
+  const [countries, setCountries] = useState('');
   // const [products, setProducts] = useState<Product[]>([]);
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
@@ -58,10 +61,6 @@ export default function HomePage() {
           numScroll: 1
       }
   ];
-  
-  // useEffect(() => {
-  //       setProducts([{ name, fat, kcal, id: '1' }]);
-  //   }, [name, fat, kcal]);
   
   const products = [{ 
       name:'test1', fat:'51', kcal:'50', id: '1' 
@@ -97,16 +96,11 @@ export default function HomePage() {
           const apiData: OpenFoodFactsResponse = await response.json();
           if (apiData.status === 1) {
             const product = apiData.product;
-            setName(product.product_name);
-            
-            if(!product.nutriments.energy_kcal_100g || !product.nutriments.fat_100g){
-              setFat('No Record');
-              setKcal('No Record');
-              console.log('test1')
-            }else{
-              setFat(product.nutriments.fat_100g);
-              setKcal(product.nutriments.energy_kcal_100g);
-            }
+
+            setName(!product.product_name?'No Record': product.product_name);
+            setFat(!product.nutriments.energy_kcal_100g?'No Record':product.nutriments.energy_kcal_100g);
+            setKcal(!product.nutriments.fat_100g?'No Record':product.nutriments.fat_100g);
+            setCountries(!product.countries?'No Record':product.countries)
             
           } else {
             console.log('Product not found');
@@ -162,6 +156,10 @@ return (
         <div>
           <label>熱量: </label>
           <b>{kcal}</b>
+        </div>
+        <div>
+          <label>國家: </label>
+          <b>{countries}</b>
         </div>
         <Carousel value={products} numVisible={3} numScroll={3} responsiveOptions={responsiveOptions} itemTemplate={productTemplate} />
     </div>
