@@ -26,7 +26,7 @@
 
 ### Development:
 
-1. Build the React Native frontend with screens for user input, schedule display, and feedback.
+1. Build the React Native/ Next js with typescript frontend with screens for user input, schedule display, and feedback.
 2. Develop a backend API to process inputs and generate schedules.
 3. Implement a rule-based logic system for schedule generation (ML model can be added later).
 4. Integrate a database for user data and progress tracking.
@@ -55,7 +55,7 @@
 
 ### Testing and Deployment:
 
-1. Test the app locally using Expo or React Native CLI.
+1. Test the app locally using Expo or React Native CLI or Next js.
 2. Set up GitHub Actions for CI/CD to automate testing and deployment.
 3. Deploy the backend to a cloud platform using Docker.
 4. Test the app on iOS/Android simulators or physical devices.
