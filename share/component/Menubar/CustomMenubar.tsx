@@ -67,7 +67,7 @@ const items = [
 const start = <Button icon="pi pi-arrow-right" rounded onClick={() => setVisible(true)} />
 const end = (
     <div className="flex align-items-center gap-2">
-        <span style={{paddingRight:'10px'}}><strong>Amy</strong></span>
+        <span style={{paddingRight:'10px'}}><strong>Hanni</strong></span>
         <Avatar icon="pi pi-user" size="large" shape="circle"/>
     </div>
 );

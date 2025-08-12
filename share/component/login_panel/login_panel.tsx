@@ -7,7 +7,6 @@ import { Panel } from 'primereact/panel';
 import { Password } from "primereact/password";
 import { Toast } from "primereact/toast";
 import { classNames } from "primereact/utils";
-import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState,useContext  } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Dialog } from 'primereact/dialog';
