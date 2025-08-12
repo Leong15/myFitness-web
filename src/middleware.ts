@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
 const protectedRoutes: { [key: string]: string[] } = {
-  '/home': ['ADMIN'],
-  '/dashboard': ['USER','ADMIN'],
+  // '/home': ['ADMIN'],
+  // '/dashboard': ['USER','ADMIN'],
 };
 
 export async function middleware(req: NextRequest) {

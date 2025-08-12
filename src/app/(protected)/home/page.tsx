@@ -1,12 +1,170 @@
 "use client";
 
 import React, { useEffect, useRef, useState,useContext  } from "react";
+import {Carousel, CarouselResponsiveOption} from 'primereact/carousel'
+import { useForm } from "react-hook-form";
+import { Button } from "primereact/button";
+
+interface Product {
+    id: string;
+    name: string;
+    fat: string;
+    kcal: string;
+}
+
+interface FormData {
+  barcode: string;
+}
+
+interface OpenFoodFactsProduct {
+  product_name: string;
+  nutriments: {
+    fat_100g: string;
+    energy_kcal_100g: string;
+  };
+}
+
+interface OpenFoodFactsResponse {
+  status: number;
+  product: OpenFoodFactsProduct;
+}
 
 export default function HomePage() {
-  return (
-    <>
-      <p>home</p>
-    </>
+  const [name,setName] = useState('');
+  const [fat,setFat] = useState('');
+  const [kcal,setKcal] = useState('');
+  // const [products, setProducts] = useState<Product[]>([]);
+
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+    defaultValues: {
+      barcode: '',
+    },
+  });
+
+  const responsiveOptions: CarouselResponsiveOption[] = [
+      {
+          breakpoint: '1199px',
+          numVisible: 1,
+          numScroll: 1
+      },
+      {
+          breakpoint: '991px',
+          numVisible: 2,
+          numScroll: 1
+      },
+      {
+          breakpoint: '767px',
+          numVisible: 1,
+          numScroll: 1
+      }
+  ];
+  
+  // useEffect(() => {
+  //       setProducts([{ name, fat, kcal, id: '1' }]);
+  //   }, [name, fat, kcal]);
+  
+  const products = [{ 
+      name:'test1', fat:'51', kcal:'50', id: '1' 
+    },
+    {
+      name:'test2', fat:'41', kcal:'', id: '2'
+    },
+        {
+      name:'test3', fat:'', kcal:'12', id: '3'
+    },
+    {
+      name:'test4', fat:'55', kcal:'23', id: '4'
+    },
+    {
+      name:'test5', fat:'11', kcal:'42', id: '5'
+    },
+  ]
+
+
+    async function onSubmit(
+      data: FormData,
+      event?: React.BaseSyntheticEvent
+    ): Promise<void> {
+      try {
+        // Log form data
+        console.log('Submitted Data:', data);
+
+        // Fetch nutritional data from Open Food Facts API if barcode is provided
+        if (data.barcode) {
+          const response = await fetch(
+            `https://world.openfoodfacts.org/api/v0/product/${data.barcode}.json`
+          );
+          const apiData: OpenFoodFactsResponse = await response.json();
+          if (apiData.status === 1) {
+            const product = apiData.product;
+            setName(product.product_name);
+            
+            if(!product.nutriments.energy_kcal_100g || !product.nutriments.fat_100g){
+              setFat('No Record');
+              setKcal('No Record');
+              console.log('test1')
+            }else{
+              setFat(product.nutriments.fat_100g);
+              setKcal(product.nutriments.energy_kcal_100g);
+            }
+            
+          } else {
+            console.log('Product not found');
+          }
+        }
+        reset();
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+
+  const productTemplate = (product:Product) => {
+      return (
+          <div className="border-1 surface-border border-round m-2 text-center py-5 px-3">
+              <div className="mb-3">
+      
+              </div>
+              <div>
+                  <h4 className="mb-1">{product.name}</h4>
+                  <h6 className="mt-0 mb-3">{product.kcal}</h6>
+                  <h6 className="mt-0 mb-3">{product.fat}</h6>
+                  <div className="mt-5 flex flex-wrap gap-2 justify-content-center">
+                      <Button icon="pi pi-search" className="p-button p-button-rounded" />
+                      <Button icon="pi pi-star-fill" className="p-button-success p-button-rounded" />
+                  </div>
+              </div>
+          </div>
+      );
+  };
+
+return (
+    <div>
+      <h1>Track Food Intake</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <label>Barcode: </label>
+          <input
+            type="text"
+            {...register('barcode')}
+            placeholder="Enter barcode for nutrition lookup"
+          />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+        <div>
+          <label>產品名稱: </label>
+          <b>{name}</b>
+        </div>
+        <div>
+          <label>脂肪含量: </label>
+          <b>{fat}</b>
+        </div>
+        <div>
+          <label>熱量: </label>
+          <b>{kcal}</b>
+        </div>
+        <Carousel value={products} numVisible={3} numScroll={3} responsiveOptions={responsiveOptions} itemTemplate={productTemplate} />
+    </div>
   );
 }
 
