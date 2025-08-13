@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "primereact/resources/themes/lara-dark-teal/theme.css";
 
-/* import "primereact/resources/themes/lara-light-indigo/theme.css";  */ //theme
+// import "primereact/resources/themes/lara-light-indigo/theme.css";   //theme
 import "primereact/resources/primereact.min.css";                  //core css
 import "primeicons/primeicons.css";                                //icons
  
