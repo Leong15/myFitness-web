@@ -1,6 +1,6 @@
 "use client";
 
-import axios from "axios";
+// import axios from "axios";
 import { Button } from "primereact/button";
 import { InputText } from 'primereact/inputtext';
 import { Panel } from 'primereact/panel';
@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation";
 /* const endpoint = "http://localhost:3000"; */
 
 function Login_Panel() {
-  const toast = useRef(null);
+  const toast = useRef<Toast>(null);
   const [forgetDialogVisible, setForgetDialogVisible] = useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -24,21 +24,21 @@ function Login_Panel() {
   const [loginStaff,setLoginStaff] = useState('');
 
   const show = () => {
-    toast.current.show({
+    toast.current?.show({
       severity: "error",
       summary: "Wrong Username or Password",
-      detail: form.getValues("value"),
+      detail: form.getValues("username"),
     })
   };
 
   const forgetShow = () => {
-    toast.current.show({
+    toast.current?.show({
       severity: "success",
       summary: "New Password will sent to your email",
     })
   };
   const forgetErrorShow = () => {
-    toast.current.show({
+    toast.current?.show({
       severity: "error",
       summary: "Account not found",
     })
@@ -74,12 +74,12 @@ function Login_Panel() {
   } */
   
 
-  const defaultValues = { value: "" };
-  const form = useForm(defaultValues);
+  const defaultValues = { username: "", password: "" };
+  const form = useForm({ defaultValues });
   const errors = form.formState.errors;
   const router = useRouter();
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: { username: any; password: any; }) => {
     const username = e.username;
     const password = e.password;
     console.log(e)

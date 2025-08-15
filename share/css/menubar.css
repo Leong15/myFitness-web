@@ -1,0 +1,23 @@
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.p-menubar {
+  background-color: rgba(55, 65, 81, 0.8) !important;
+  border: none !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 960px) {
+  .p-menubar .p-menubar-root-list {
+    background-color: rgb(55, 65, 81) !important;
+  }
+}
+
+.main-content {
+  padding-top: 100px;
+}
