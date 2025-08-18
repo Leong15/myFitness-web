@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "primereact/resources/themes/lara-dark-teal/theme.css";
 
-/* import "primereact/resources/themes/lara-light-indigo/theme.css";  */ //theme
+// import "primereact/resources/themes/lara-light-indigo/theme.css";   //theme
 import "primereact/resources/primereact.min.css";                  //core css
 import "primeicons/primeicons.css";                                //icons
  
@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} style={{backgroundImage:'url("/images/background.png")', backgroundSize: 'auto'}}>
         {children}
       </body>
     </html>

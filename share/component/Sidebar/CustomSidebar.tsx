@@ -12,6 +12,7 @@ import { Dialog } from 'primereact/dialog';
 import { Password } from "primereact/password";
 import { Splitter, SplitterPanel } from 'primereact/splitter';
 import {Dropdown} from "primereact/dropdown"
+import ChangePasswordDialog from './ChangePasswordDialog';
 
 interface IHealth_Info {
     age: number;
@@ -21,11 +22,7 @@ interface IHealth_Info {
 
 const CustomSidebar = (props:{to_visible: boolean, onHide:any}) => {
     const toast = useRef(null);
-    const [username, setUsername] = useState('');
-    const [oldPassword, setOldPassword] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-    const [email, setEmail] = useState('');
-    const [changeDialogvisible, setChangeDialogvisible] = useState(false);
+
     const [bmr, setBmr] = useState<number>(0);
     const [tdee, setTdee] = useState<number>(0);
     const [selectedLifeStyle, setSelectedLifeStyle] = useState(null);
@@ -106,15 +103,7 @@ const CustomSidebar = (props:{to_visible: boolean, onHide:any}) => {
         </React.Fragment>
     );
 
-    const changefooterContent = (
-        <div style={{display:'flex',  justifyContent: 'space-between'}}>        
-        <Button label="Confirm" icon="pi pi-check" onClick={() => {setChangeDialogvisible(false)}} autoFocus />
-        <Button label="No" icon="pi pi-times" onClick={() => {setUsername(''),
-        setEmail(''),
-        setOldPassword(''),
-        setNewPassword(''),setChangeDialogvisible(false)}} className="p-button-text" />
-        </div>
-    );
+
 
     return(
         <Sidebar
@@ -123,39 +112,19 @@ const CustomSidebar = (props:{to_visible: boolean, onHide:any}) => {
             header={<div ><Avatar icon="pi pi-user" size="large" shape="circle"/><strong style={{paddingLeft:'8px', fontSize:'14px'}}>Amy</strong></div>}
             icons={customIcons}
         >
-            <Button label="Change Password" onClick={() => setChangeDialogvisible(true)}  type="button" style={{fontSize:'12px'}} text raised />
-            <Dialog header="Do you want to change your password?" visible={changeDialogvisible} style={{ width: '35vw', textAlign:'center'}} onHide={() => setChangeDialogvisible(false)} footer={changefooterContent}>
-                    <p className="m-0">
-                    Fill in your username, old password and new password.
-                    </p>
-                    <br/>
-                    <span className="p-float-label"style={{display:'inline-flex'}}>
-                        <InputText id="username" className="p-inputtext-lg" value={username} onChange={(e) => setUsername(e.target.value)}/>
-                        <label htmlFor="username">Username</label>
-                    </span>
-                    <br/><br/>
-                    <span className="p-float-label"style={{display:'inline-flex'}}>
-                        <Password id="newPassword" className="p-inputtext-lg" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} feedback={false} toggleMask />
-                        <label htmlFor="oldPassword">Old Password</label>
-                    </span>
-                    <br/><br/>
-                    <span className="p-float-label"style={{display:'inline-flex'}}>
-                        <Password id="newPassword" className="p-inputtext-lg" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} toggleMask />
-                        <label htmlFor="newPassword">newPassword</label>
-                    </span>
-            </Dialog>
+            <ChangePasswordDialog/>
             <div>
             <Splitter style={{ height: '100%', paddingTop:'20px'}} layout="vertical">
                 <SplitterPanel><strong>Gender:</strong></SplitterPanel>
                 <SplitterPanel><label htmlFor="age" className="font-bold block mb-2">Life Style:</label><Dropdown style={{overflow:'hidden'}} value={selectedLifeStyle} onChange={(e) => handleLifeStyleSelection(e.value)} options={lifeStyle} optionLabel="name" 
                 placeholder="Select Your Life Style" className="w-full md:w-14rem" /></SplitterPanel>
-                <SplitterPanel><label htmlFor="age" className="font-bold block mb-2">Age:</label><InputNumber style={{overflow:'hidden'}} id="age" value={health_Info.age} onValueChange={(e)=>handleAgeChange(e.value)} disabled/></SplitterPanel>
-                <SplitterPanel><strong>Height:</strong><InputNumber style={{overflow:'hidden'}} value={health_Info.height} onValueChange={(e)=>handleHeightChange(e.value)} suffix="cm" disabled/* style={{width:'90%'}} */ /></SplitterPanel>
-                <SplitterPanel><strong>Weight:</strong><InputNumber style={{overflow:'hidden'}} value={health_Info.weight} onValueChange={(e)=>handleWeightChange(e.value)} suffix="kg" disabled/></SplitterPanel>
+                <SplitterPanel><label htmlFor="age" className="font-bold block mb-2">Age:</label><InputNumber style={{overflow:'hidden'}} id="age" value={health_Info.age} onValueChange={(e)=>handleAgeChange(e.value)} /></SplitterPanel>
+                <SplitterPanel><strong>Height:</strong><InputNumber style={{overflow:'hidden'}} value={health_Info.height} onValueChange={(e)=>handleHeightChange(e.value)} suffix="cm" /* style={{width:'90%'}} */ /></SplitterPanel>
+                <SplitterPanel><strong>Weight:</strong><InputNumber style={{overflow:'hidden'}} value={health_Info.weight} onValueChange={(e)=>handleWeightChange(e.value)} suffix="kg" /></SplitterPanel>
                 <SplitterPanel><strong>BMR(基礎代謝率):</strong><br/><div style={{textAlign:'center'}}>{bmr} Cal</div></SplitterPanel>
                 <SplitterPanel><strong>TDEE(總熱量消耗):</strong><br/><div style={{textAlign:'center'}}>{tdee} Cal</div></SplitterPanel>
                 <SplitterPanel><strong>Recived Cal Today:</strong><br/><div style={{textAlign:'center'}}>{health_Info.weight} Cal</div></SplitterPanel>
-                <SplitterPanel><strong>Potein:</strong><br/><div style={{textAlign:'center'}}>xxx Po</div></SplitterPanel>
+                <SplitterPanel><strong>Potein:</strong><br/><div style={{textAlign:'center'}}>xxx g</div></SplitterPanel>
             </Splitter>
             </div>
             <div style={{display:'flex',justifyContent:'center',paddingTop:'10px'}}>

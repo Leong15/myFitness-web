@@ -6,6 +6,11 @@ import { Avatar } from 'primereact/avatar';
 import { Button } from 'primereact/button';
 import { useRouter,usePathname } from 'next/navigation';
 import CustomSidebar from '../Sidebar/CustomSidebar';
+import { FaUtensils } from 'react-icons/fa';
+import { CiDumbbell } from "react-icons/ci";
+import { CiBarcode } from "react-icons/ci";
+import { GiWeightLiftingUp } from "react-icons/gi";
+import { CgChevronRight } from "react-icons/cg";
 
 function CustomMenubar() {
 /*   const { isLoggedIn, setIsLoggedIn,loginStaff,setLoginStaff } = useContext(LoginContext); */
@@ -26,55 +31,59 @@ const hide_sidebar =()=>{
 }
 const items = [
     {
-        label: 'Home',
-        icon: 'pi pi-home',
-        command: () =>{
-            router.push('/home')
-        }
+        label: 'Food',
+        icon: <FaUtensils style={{ marginRight: '8px', fontSize:'20px' }} />,
+        items:[
+            {
+                label: 'Search Food',
+                icon:<CiBarcode style={{ marginRight: '8px', fontSize:'20px' }} />,
+                command: () =>{
+                    router.push('/searchByBarcode')
+                }
+            }
+        ]
     },
     {
-        label: 'Dashboard',
-        icon: 'pi pi-caret-right',
-        command: () => {
-            router.push('/dashboard');
-        }
+        label: 'Gym',
+        icon: <GiWeightLiftingUp style={{ marginRight: '8px', fontSize:'20px' }} />,
+        items:[
+            {
+                label: 'Equirment',
+                icon: <CiDumbbell style={{ marginRight: '8px', fontSize:'20px' }} />,
+                command: () => {
+                    router.push('/dashboard');
+                }
+            },
+            {
+                label: 'Gym',
+                icon: 'pi pi-caret-right',
+                command: () => {
+                    router.push('/dashboard');
+                }
+            },
+        ]
     },
+
     {
         label: 'Login',
         icon: 'pi pi-caret-right',
         command: () => {
             router.push('/login');
         }
-    },
-    {
-        label: 'External',
-        icon: 'pi pi-link',
-        items: [
-            {
-                label: 'React.js',
-                icon: 'pi pi-star',
-                url: 'https://react.dev/'
-            },
-            {
-                label: 'Vite.js',
-                icon: 'pi pi-bookmark',
-                url: 'https://vite.dev/'
-            }
-        ]
     }
 ];
 
-const start = <Button icon="pi pi-arrow-right" rounded onClick={() => setVisible(true)} />
+const start = <Button icon={<CgChevronRight style={{fontSize:'20px'}}/>} rounded onClick={() => setVisible(true)} />
 const end = (
     <div className="flex align-items-center gap-2">
-        <span style={{paddingRight:'10px'}}><strong>Amy</strong></span>
+        <span style={{paddingRight:'10px'}}><strong>Hanni</strong></span>
         <Avatar icon="pi pi-user" size="large" shape="circle"/>
     </div>
 );
   return(
     <div className="card">
         <CustomSidebar to_visible={visible} onHide={() => setVisible(false)} />
-        <Menubar model={items} start={start} end={end} />
+        <Menubar model={items} start={start} end={end}/>
     </div>
   )
 }
