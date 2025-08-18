@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react';
 import CustomMenubar from "../../../share/component/Menubar/CustomMenubar";
-import '../../../share/css/menubar.css'
+import styles from '../../../share/css/Header.module.css'
 
 interface LayoutProps{
     children: ReactNode;
@@ -9,7 +9,7 @@ interface LayoutProps{
 const ProtectedLayout:React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
-      <header className="fixed-header"><CustomMenubar /></header>
+      <header className={`${styles.fixedheader}`}><CustomMenubar /></header>
       <main style={{paddingTop:'100px'}}>{children}</main>
     </>
   );

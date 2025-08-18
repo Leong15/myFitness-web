@@ -1,27 +1,129 @@
-/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[12].use[3]!./share/css/menubar.css ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************/
-.fixed-header {
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[7].use[3]!./share/css/ChangePasswordDialog.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
+.ChangePasswordDialog_container__CeXMa {
+  padding: 5px;
+}
+
+.ChangePasswordDialog_changePasswordButton___WrCD {
+  font-size: 12px;
+}
+
+.ChangePasswordDialog_dialog__dMXZp {
+  text-align: center;
+  width: 90%;
+  max-width: 400px; 
+}
+
+@media (min-width: 300px) {
+  .ChangePasswordDialog_dialog__dMXZp {
+    width: 90%;
+    max-width: 600px;
+  }
+}
+
+@media (min-width: 1043px) {
+  .ChangePasswordDialog_dialog__dMXZp {
+    width: 35%;
+    max-width: 700px;
+  }
+}
+
+.ChangePasswordDialog_input__Botuo{
+  width: 90% !important;
+}
+
+.ChangePasswordDialog_inputContainer__a71sV .p-password .p-inputtext {
+  width: 100% !important;
+}
+
+.ChangePasswordDialog_inputLabel__WrhR5 {
+  left: 2rem;
+  /* width: 100%;  */
+}
+
+.ChangePasswordDialog_inputContainer__a71sV {
+  display: inline-flex;
+  width: 100%; 
+  justify-content: center;
+}
+
+.ChangePasswordDialog_buttonContainer__U6Xpp {
+  padding-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ChangePasswordDialog_error__YhFuu {
+  color: red;
+  font-size: 12px;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[7].use[3]!./share/css/Sidebar.module.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+.Sidebar_sidebar__DG0pi {
+    border-radius: 60px;
+}
+
+.Sidebar_headerText__dARa7 {
+    padding-left: 8px;
+    font-size: 14px;
+}
+
+.Sidebar_splitter__SeJf0 {
+    height: 100%;
+    padding-top: 20px;
+}
+
+.Sidebar_centeredText__yp0Jz {
+    text-align: center;
+}
+
+.Sidebar_buttonContainer__d6VHS {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.Sidebar_calculateButton__3O0GN {
+    font-size: 20px;
+}
+
+.Sidebar_noOverflow__dQPrH {
+    overflow: hidden;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[7].use[3]!./share/css/Menubar.module.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+.Menubar_menubar__MK6KZ {
+  background-color: rgba(55, 65, 81, 0.8) !important;
+  border: none !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 60px !important;
+}
+
+.Menubar_icon___OOft {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.Menubar_avatar-wrapper__AeLoZ {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.Menubar_name__WooSe {
+  padding-right: 10px;
+  font-weight: bold;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[7].use[3]!./share/css/Header.module.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
+.Header_fixedheader__sn3wu {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
 }
-
-.p-menubar {
-  background-color: rgba(55, 65, 81, 0.8) !important;
-  border: none !important;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-@media screen and (max-width: 960px) {
-  .p-menubar .p-menubar-root-list {
-    background-color: rgb(55, 65, 81) !important;
-  }
-}
-
-.main-content {
-  padding-top: 100px;
-}
-

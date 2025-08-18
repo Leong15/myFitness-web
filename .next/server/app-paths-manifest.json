@@ -1,4 +1,3 @@
 {
-  "/not-found": "app/not-found.js",
   "/(protected)/searchByBarcode/page": "app/(protected)/searchByBarcode/page.js"
 }

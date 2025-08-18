@@ -1,0 +1,22 @@
+.menubar {
+  background-color: rgba(55, 65, 81, 0.8) !important;
+  border: none !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 60px !important;
+}
+
+.icon {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.avatar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.name {
+  padding-right: 10px;
+  font-weight: bold;
+}

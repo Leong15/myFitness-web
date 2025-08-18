@@ -1,0 +1,31 @@
+.sidebar {
+    border-radius: 60px;
+}
+
+.headerText {
+    padding-left: 8px;
+    font-size: 14px;
+}
+
+.splitter {
+    height: 100%;
+    padding-top: 20px;
+}
+
+.centeredText {
+    text-align: center;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.calculateButton {
+    font-size: 20px;
+}
+
+.noOverflow {
+    overflow: hidden;
+}

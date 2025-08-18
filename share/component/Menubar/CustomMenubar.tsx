@@ -1,91 +1,104 @@
 "use client";
-import React,{ useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Menubar } from 'primereact/menubar';
 import { Badge } from 'primereact/badge';
-import { Avatar } from 'primereact/avatar';  
+import { Avatar } from 'primereact/avatar';
 import { Button } from 'primereact/button';
-import { useRouter,usePathname } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import CustomSidebar from '../Sidebar/CustomSidebar';
 import { FaUtensils } from 'react-icons/fa';
-import { CiDumbbell } from "react-icons/ci";
-import { CiBarcode } from "react-icons/ci";
-import { GiWeightLiftingUp } from "react-icons/gi";
-import { CgChevronRight } from "react-icons/cg";
+import { CiDumbbell, CiBarcode } from 'react-icons/ci';
+import { GiWeightLiftingUp } from 'react-icons/gi';
+import { CgChevronRight } from 'react-icons/cg';
+import styles from '../../css/Menubar.module.css';
 
 function CustomMenubar() {
-/*   const { isLoggedIn, setIsLoggedIn,loginStaff,setLoginStaff } = useContext(LoginContext); */
-const router = useRouter();
-const pathName = usePathname();
-const [visible, setVisible] = useState(false);
+  const router = useRouter();
+  const pathName = usePathname();
+  const [visible, setVisible] = useState(false);
 
-const itemRenderer = (item:any) => (
+  const itemRenderer = (item: any) => (
     <a className="flex align-items-center p-menuitem-link">
-        <span className={item.icon} />
-        <span className="mx-2">{item.label}</span>
-        {item.badge && <Badge className="ml-auto" value={item.badge} />}
-        {item.shortcut && <span className="ml-auto border-1 surface-border border-round surface-100 text-xs p-1">{item.shortcut}</span>}
+      <span className={`${item.iconClass} ${styles.icon}`} />
+      <span className="mx-2">{item.label}</span>
+      {item.badge && <Badge className="ml-auto" value={item.badge} />}
+      {item.shortcut && (
+        <span className="ml-auto border-1 surface-border border-round surface-100 text-xs p-1">
+          {item.shortcut}
+        </span>
+      )}
     </a>
-);
-const hide_sidebar =()=>{
-    setVisible(false)
-}
-const items = [
+  );
+
+  const hideSidebar = () => {
+    setVisible(false);
+  };
+
+  const items = [
     {
-        label: 'Food',
-        icon: <FaUtensils style={{ marginRight: '8px', fontSize:'20px' }} />,
-        items:[
-            {
-                label: 'Search Food',
-                icon:<CiBarcode style={{ marginRight: '8px', fontSize:'20px' }} />,
-                command: () =>{
-                    router.push('/searchByBarcode')
-                }
-            }
-        ]
+      label: 'Food',
+      icon: <FaUtensils className={`${styles.icon}`} />,
+      items: [
+        {
+          label: 'Search Food',
+          icon:<CiBarcode className={`${styles.icon}`} />,
+          command: () => {
+            router.push('/searchByBarcode');
+          },
+        },
+      ],
     },
     {
-        label: 'Gym',
-        icon: <GiWeightLiftingUp style={{ marginRight: '8px', fontSize:'20px' }} />,
-        items:[
-            {
-                label: 'Equirment',
-                icon: <CiDumbbell style={{ marginRight: '8px', fontSize:'20px' }} />,
-                command: () => {
-                    router.push('/dashboard');
-                }
-            },
-            {
-                label: 'Gym',
-                icon: 'pi pi-caret-right',
-                command: () => {
-                    router.push('/dashboard');
-                }
-            },
-        ]
+      label: 'Gym',
+      icon: <GiWeightLiftingUp className={`${styles.icon}`} />,
+      items: [
+        {
+          label: 'Equipment',
+          icon: <CiDumbbell className={`${styles.icon}`} />,
+          command: () => {
+            router.push('/dashboard');
+          },
+        },
+        {
+          label: 'Gym',
+          icon: 'pi pi-caret-right',
+          command: () => {
+            router.push('/dashboard');
+          },
+        },
+      ],
     },
-
     {
-        label: 'Login',
-        icon: 'pi pi-caret-right',
-        command: () => {
-            router.push('/login');
-        }
-    }
-];
+      label: 'Login',
+      iconClass: 'pi pi-caret-right',
+      template: itemRenderer,
+      command: () => {
+        router.push('/login');
+      },
+    },
+  ];
 
-const start = <Button icon={<CgChevronRight style={{fontSize:'20px'}}/>} rounded onClick={() => setVisible(true)} />
-const end = (
-    <div className="flex align-items-center gap-2">
-        <span style={{paddingRight:'10px'}}><strong>Hanni</strong></span>
-        <Avatar icon="pi pi-user" size="large" shape="circle"/>
+  const start = (
+    <Button
+      icon={<CgChevronRight className={styles.icon} />}
+      rounded
+      onClick={() => setVisible(true)}
+    />
+  );
+
+  const end = (
+    <div className={styles.avatarWrapper}>
+      <span className={styles.name}>Hanni</span>
+      <Avatar icon="pi pi-user" size="large" shape="circle" />
     </div>
-);
-  return(
-    <div className="card">
-        <CustomSidebar to_visible={visible} onHide={() => setVisible(false)} />
-        <Menubar model={items} start={start} end={end}/>
+  );
+
+  return (
+    <div className={styles.fixedHeader}>
+      <CustomSidebar to_visible={visible} onHide={hideSidebar} />
+      <Menubar model={items} start={start} end={end} className={styles.menubar} />
     </div>
-  )
+  );
 }
 
 export default CustomMenubar;
