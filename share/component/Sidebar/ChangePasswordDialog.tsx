@@ -8,6 +8,7 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useClickOutside } from 'primereact/hooks';
+import styles from '../../css/ChangePasswordDialog.module.css';
 
 const changePWSchema = z
   .object({
@@ -53,20 +54,19 @@ export default function ChangePasswordDialog() {
   };
 
   return (
-    <div style={{padding:'5px'}}>
-      {/* <br/> */}
+    <div className={styles.container}>
       <Button
         label="Change Password"
         onClick={() => setChangeDialogvisible(true)}
         type="button"
-        style={{ fontSize: "12px" }}
+        className={styles.changePasswordButton}
         text
         raised
       />
       <Dialog
         header="Do you want to change your password?"
         visible={changeDialogvisible}
-        style={{ width: "35vw", textAlign: "center" }}
+        className={styles.dialog}
         onHide={() => {
           setChangeDialogvisible(false);
           reset();
@@ -81,75 +81,66 @@ export default function ChangePasswordDialog() {
           <form onSubmit={handleSubmit(onSubmit)}>
             <Controller
               render={({ field }) => (
-                <span
-                  className="p-float-label"
-                  style={{ display: "inline-flex" }}
-                >
+                <span className={`${styles.inputContainer} p-float-label`}>
                   <InputText
                     id="username"
-                    className="p-inputtext-lg"
+                    className={`${styles.input} p-inputtext-lg`}
                     value={field.value}
                     onChange={field.onChange}
                   />
-                  <label htmlFor="username">Username</label>
+                  <label className={`${styles.inputLabel}`} htmlFor="username">Username</label>
                 </span>
               )}
               name="username"
               control={control}
               defaultValue=""
             />
-            {errors.username && <div>{errors.username.message}</div>}
+            {errors.username && <div className={styles.error}>{errors.username.message}</div>}
 
             <br />
             <br />
             <Controller
               render={({ field }) => (
-                <span
-                  className="p-float-label"
-                  style={{ display: "inline-flex" }}
-                >
+                <span className={`${styles.inputContainer} p-float-label`}>
                   <Password
                     id="oldPassword"
-                    className="p-inputtext-lg"
+                    className={`${styles.input} p-inputtext-lg`}
                     value={field.value}
                     onChange={field.onChange}
                     feedback={false}
                     toggleMask
                   />
-                  <label htmlFor="oldPassword">Old Password</label>
+                  <label className={`${styles.inputLabel}`} htmlFor="oldPassword">Old Password</label>
                 </span>
               )}
               name="oldPassword"
               control={control}
               defaultValue=""
             />
-            {errors.oldPassword && <div>{errors.oldPassword.message}</div>}
+            {errors.oldPassword && <div className={styles.error}>{errors.oldPassword.message}</div>}
             <br />
             <br />
 
             <Controller
               render={({ field }) => (
-                <span
-                  className="p-float-label"
-                  style={{ display: "inline-flex" }}
-                >
+                <span className={`${styles.inputContainer} p-float-label`}>
                   <Password
                     id="newPassword"
-                    className="p-inputtext-lg"
+                    className={`${styles.input} p-inputtext-lg`}
                     value={field.value}
                     onChange={field.onChange}
                     toggleMask
                   />
-                  <label htmlFor="newPassword">New Password</label>
+                  <label className={`${styles.inputLabel}`} htmlFor="newPassword">New Password</label>
                 </span>
               )}
               name="newPassword"
               control={control}
               defaultValue=""
             />
-            {errors.newPassword && <div>{errors.newPassword.message}</div>}
+            {errors.newPassword && <div className={styles.error}>{errors.newPassword.message}</div>}
 
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div className={styles.buttonContainer}>
               <Button label="Confirm" icon="pi pi-check" type="submit" autoFocus />
               <Button
                 label="No"

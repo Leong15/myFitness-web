@@ -1,0 +1,4 @@
+{
+  "/(protected)/searchByBarcode/page": "app/(protected)/searchByBarcode/page.js",
+  "/(protected)/gymDashboard/page": "app/(protected)/gymDashboard/page.js"
+}
