@@ -10,11 +10,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/loading.js"
     ],
-    "/(protected)/searchByBarcode/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(protected)/searchByBarcode/page.js"
-    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -26,6 +21,16 @@
       "static/chunks/main-app.js",
       "static/css/app/(protected)/layout.css",
       "static/chunks/app/(protected)/layout.js"
+    ],
+    "/(protected)/searchByBarcode/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(protected)/searchByBarcode/page.js"
+    ],
+    "/(protected)/gymDashboard/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(protected)/gymDashboard/page.js"
     ]
   }
 }

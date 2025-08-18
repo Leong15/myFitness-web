@@ -38,35 +38,16 @@ function CustomMenubar() {
     {
       label: 'Food',
       icon: <FaUtensils className={`${styles.icon}`} />,
-      items: [
-        {
-          label: 'Search Food',
-          icon:<CiBarcode className={`${styles.icon}`} />,
-          command: () => {
-            router.push('/searchByBarcode');
-          },
-        },
-      ],
+      command: () => {
+        router.push('/searchByBarcode');
+      },
     },
     {
       label: 'Gym',
       icon: <GiWeightLiftingUp className={`${styles.icon}`} />,
-      items: [
-        {
-          label: 'Equipment',
-          icon: <CiDumbbell className={`${styles.icon}`} />,
-          command: () => {
-            router.push('/dashboard');
-          },
-        },
-        {
-          label: 'Gym',
-          icon: 'pi pi-caret-right',
-          command: () => {
-            router.push('/dashboard');
-          },
-        },
-      ],
+      command: () => {
+        router.push('/gymDashboard');
+      },
     },
     {
       label: 'Login',
