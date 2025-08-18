@@ -22,7 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className} style={{backgroundImage:'url("/images/background.png")', backgroundSize: 'auto'}}>
+      <body className={inter.className} style={{
+      backgroundImage: 'url("/images/background.png")',
+      backgroundSize: 'cover', // Options: 'cover', 'contain', 'auto', or specific values like '100% 100%'
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      minHeight: '100vh',
+    }}>
         {children}
       </body>
     </html>
