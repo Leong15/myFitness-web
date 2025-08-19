@@ -13,6 +13,8 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+.next/
+
 # Mono auto generated files
 mono_crash.*
 
