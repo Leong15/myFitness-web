@@ -5,9 +5,9 @@ import "primereact/resources/themes/lara-dark-teal/theme.css";
 
 // import "primereact/resources/themes/lara-light-indigo/theme.css";   //theme
 import "primereact/resources/primereact.min.css";                  //core css
-import "primeicons/primeicons.css";                                //icons
+import "primeicons/primeicons.css";    
+import ClientProviders from "./clientProvider";      
  
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -24,13 +24,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className} style={{
       backgroundColor: "#59697a",
-      // backgroundImage: 'url("/images/background.png")',
-      // backgroundSize: 'cover',
-      // backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       minHeight: '100vh',
     }}>
-        {children}
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );

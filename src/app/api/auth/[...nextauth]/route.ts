@@ -3,7 +3,7 @@ import type { NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaClient } from "@prisma/client";
 const db = new PrismaClient();
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 interface CustomUser extends User {
@@ -35,6 +35,7 @@ const Options: NextAuthOptions = {
         const user = await db.users.findUnique({
           where: { username: credentials.username },
         });
+        return{user}
 
         if (!user) {
           throw new Error("No user found with this username");
