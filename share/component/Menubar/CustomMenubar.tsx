@@ -39,7 +39,7 @@ function CustomMenubar() {
       label: 'Food',
       icon: <FaUtensils className={`${styles.icon}`} />,
       command: () => {
-        router.push('/searchByBarcode');
+        router.push('/foodDashboard');
       },
     },
     {

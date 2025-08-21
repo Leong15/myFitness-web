@@ -7,8 +7,8 @@ import { useRef, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useClickOutside } from 'primereact/hooks';
-import styles from '../../css/ChangePasswordDialog.module.css';
+import { useClickOutside } from "primereact/hooks";
+import styles from "../../css/ChangePasswordDialog.module.css";
 
 const changePWSchema = z
   .object({
@@ -64,7 +64,7 @@ export default function ChangePasswordDialog() {
         raised
       />
       <Dialog
-        header="Do you want to change your password?"
+        header="Change Password"
         visible={changeDialogvisible}
         className={styles.dialog}
         onHide={() => {
@@ -74,9 +74,7 @@ export default function ChangePasswordDialog() {
         dismissableMask={true}
       >
         <div ref={dialogContentRef}>
-          <p className="m-0">
-            Fill in your username, old password, and new password.
-          </p>
+          <p className="m-0">Please fill in below fields.</p>
           <br />
           <form onSubmit={handleSubmit(onSubmit)}>
             <Controller
@@ -88,14 +86,18 @@ export default function ChangePasswordDialog() {
                     value={field.value}
                     onChange={field.onChange}
                   />
-                  <label className={`${styles.inputLabel}`} htmlFor="username">Username</label>
+                  <label className={`${styles.inputLabel}`} htmlFor="username">
+                    Username
+                  </label>
                 </span>
               )}
               name="username"
               control={control}
               defaultValue=""
             />
-            {errors.username && <div className={styles.error}>{errors.username.message}</div>}
+            {errors.username && (
+              <div className={styles.error}>{errors.username.message}</div>
+            )}
 
             <br />
             <br />
@@ -110,14 +112,21 @@ export default function ChangePasswordDialog() {
                     feedback={false}
                     toggleMask
                   />
-                  <label className={`${styles.inputLabel}`} htmlFor="oldPassword">Old Password</label>
+                  <label
+                    className={`${styles.inputLabel}`}
+                    htmlFor="oldPassword"
+                  >
+                    Old Password
+                  </label>
                 </span>
               )}
               name="oldPassword"
               control={control}
               defaultValue=""
             />
-            {errors.oldPassword && <div className={styles.error}>{errors.oldPassword.message}</div>}
+            {errors.oldPassword && (
+              <div className={styles.error}>{errors.oldPassword.message}</div>
+            )}
             <br />
             <br />
 
@@ -131,17 +140,29 @@ export default function ChangePasswordDialog() {
                     onChange={field.onChange}
                     toggleMask
                   />
-                  <label className={`${styles.inputLabel}`} htmlFor="newPassword">New Password</label>
+                  <label
+                    className={`${styles.inputLabel}`}
+                    htmlFor="newPassword"
+                  >
+                    New Password
+                  </label>
                 </span>
               )}
               name="newPassword"
               control={control}
               defaultValue=""
             />
-            {errors.newPassword && <div className={styles.error}>{errors.newPassword.message}</div>}
+            {errors.newPassword && (
+              <div className={styles.error}>{errors.newPassword.message}</div>
+            )}
 
             <div className={styles.buttonContainer}>
-              <Button label="Confirm" icon="pi pi-check" type="submit" autoFocus />
+              <Button
+                label="Confirm"
+                icon="pi pi-check"
+                type="submit"
+                autoFocus
+              />
               <Button
                 label="No"
                 icon="pi pi-times"

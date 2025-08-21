@@ -4,7 +4,9 @@ import { InputText } from "primereact/inputtext";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import styles from '../../css/ChangePasswordDialog.module.css';
+import { useRef } from "react";
+import { useClickOutside } from "primereact/hooks";
+import styles from "../../css/ForgetPasswordDialog.module.css";
 
 const endpoint = "http://localhost:3000/";
 
@@ -14,20 +16,18 @@ interface FormData {
 }
 
 interface ForgetPasswordDialogProps {
-    open: boolean;
-    onClose: () => void;
-  }
+  open: boolean;
+  onClose: () => void;
+}
 
-  const forgetPWSchema = z
-    .object({
-      username: z.string().min(1, "Username is required"),
-      email: z.string().min(1, "Email is required"),
-    })
+const forgetPWSchema = z.object({
+  username: z.string().min(1, "Username is required"),
+  email: z.string().min(1, "Email is required"),
+});
 
 type ForgetPWFormData = z.infer<typeof forgetPWSchema>;
 
 async function forgetPassword() {
-
   // try {
   //   const res = await axios.post(`${endpoint}/forget_password`, {
   //     credentials
@@ -40,59 +40,79 @@ async function forgetPassword() {
   //   setUsername('');
   //   setEmail('');
   //   forgetErrorShow();
-  //   console.log(error); 
+  //   console.log(error);
   // }
-} 
-// const forgetShow = () => {
-//   toast.current?.show({
-//     severity: "success",
-//     summary: "New Password will sent to your email",
-//   })
-// };
-// const forgetErrorShow = () => {
-//   toast.current?.show({
-//     severity: "error",
-//     summary: "Account not found",
-//   })
-// };
-
-// const show = () => {
-//   toast.current?.show({
-//     severity: "error",
-//     summary: "Wrong Username or Password",
-//     detail: form.getValues("username"),
-//   })
-// };
+}
 
 function ForgetPassword_dialog(props: ForgetPasswordDialogProps) {
   const { onClose, open } = props;
 
   const defaultValues: FormData = { username: "", email: "" };
-  const form = useForm<ForgetPWFormData>({ resolver: zodResolver(forgetPWSchema),defaultValues });
-  const { control, formState: { errors }, handleSubmit,reset } = form;
+  const form = useForm<ForgetPWFormData>({
+    resolver: zodResolver(forgetPWSchema),
+    defaultValues,
+  });
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = form;
+  const dialogContentRef = useRef<HTMLDivElement>(null);
 
   const forgetfooterContent = (
-    <div style={{display:'flex',  justifyContent: 'space-between'}}>        
-      <Button label="Yes" icon="pi pi-check" type="submit" form="forgetPWform" autoFocus />
-      <Button label="No" icon="pi pi-times" onClick={() => {reset();onClose();}} className="p-button-text" />
+    <div className={styles.footerContainer}>
+      <Button
+        label="Yes"
+        icon="pi pi-check"
+        type="submit"
+        form="forgetPWform"
+        autoFocus
+      />
+      <Button
+        label="No"
+        icon="pi pi-times"
+        onClick={() => {
+          reset();
+          onClose();
+        }}
+        className="p-button-text"
+      />
     </div>
   );
 
-  return(
-    <Dialog header="Are you forgot your password?" visible={open} style={{ fontSize: '13px', textAlign:'center'}} onHide={() => onClose()} footer={forgetfooterContent}>
+  useClickOutside(dialogContentRef, () => {
+    onClose();
+    reset();
+  });
+
+  return (
+    <Dialog
+      header="Are you forgot your password?"
+      visible={open}
+      className={styles.dialogContent}
+      onHide={() => onClose()}
+      footer={forgetfooterContent}
+      dismissableMask={true}
+    >
+      <div ref={dialogContentRef}>
         <p className="m-0">
-          Fill in your email and username. <br/>
+          Fill in your email and username. <br />
           New Password will be send to your email.
         </p>
-        <br/>
-        <form id="forgetPWform" onSubmit={handleSubmit(forgetPassword)} style={{ textAlign: "center" }}>
+        <br />
+        <form
+          id="forgetPWform"
+          onSubmit={handleSubmit(forgetPassword)}
+          className={styles.formContainer}
+        >
           <Controller
             name="username"
             control={control}
             rules={{ required: "Username is required." }}
             render={({ field }) => (
               <>
-                <span className="p-float-label" style={{ display: "inline-flex" }}>
+                <span className={`${styles.inputContainer} p-float-label`}>
                   <InputText
                     {...field}
                     className="p-inputtext-lg"
@@ -102,11 +122,12 @@ function ForgetPassword_dialog(props: ForgetPasswordDialogProps) {
                   <label htmlFor={field.name}>Username</label>
                 </span>
                 <br />
-                {errors.username && <div className={styles.error}>{errors.username.message}</div>}
+                {errors.username && (
+                  <div className={styles.error}>{errors.username.message}</div>
+                )}
               </>
             )}
           />
-          <br />
           <br />
           <Controller
             name="email"
@@ -114,7 +135,7 @@ function ForgetPassword_dialog(props: ForgetPasswordDialogProps) {
             rules={{ required: "Email is required." }}
             render={({ field }) => (
               <>
-                <span className="p-float-label" style={{ display: "inline-flex" }}>
+                <span className={`${styles.inputContainer} p-float-label`}>
                   <InputText
                     {...field}
                     className="p-inputtext-lg"
@@ -124,14 +145,16 @@ function ForgetPassword_dialog(props: ForgetPasswordDialogProps) {
                   <label htmlFor={field.name}>Email</label>
                 </span>
                 <br />
-                {errors.email && <div className={styles.error}>{errors.email.message}</div>}
+                {errors.email && (
+                  <div className={styles.error}>{errors.email.message}</div>
+                )}
               </>
             )}
           />
         </form>
+      </div>
     </Dialog>
-  )
+  );
 }
 
-export default ForgetPassword_dialog
-
+export default ForgetPassword_dialog;
