@@ -4,18 +4,18 @@ import { Menubar } from 'primereact/menubar';
 import { Badge } from 'primereact/badge';
 import { Avatar } from 'primereact/avatar';
 import { Button } from 'primereact/button';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import CustomSidebar from '../Sidebar/CustomSidebar';
 import { FaUtensils } from 'react-icons/fa';
-import { CiDumbbell, CiBarcode } from 'react-icons/ci';
 import { GiWeightLiftingUp } from 'react-icons/gi';
 import { CgChevronRight } from 'react-icons/cg';
 import styles from '../../css/Menubar.module.css';
+import { useSession } from 'next-auth/react';
 
 function CustomMenubar() {
   const router = useRouter();
-  const pathName = usePathname();
   const [visible, setVisible] = useState(false);
+  const { data: session } = useSession();
 
   const itemRenderer = (item: any) => (
     <a className="flex align-items-center p-menuitem-link">
@@ -49,14 +49,6 @@ function CustomMenubar() {
         router.push('/gymDashboard');
       },
     },
-    {
-      label: 'Login',
-      iconClass: 'pi pi-caret-right',
-      template: itemRenderer,
-      command: () => {
-        router.push('/login');
-      },
-    },
   ];
 
   const start = (
@@ -69,7 +61,7 @@ function CustomMenubar() {
 
   const end = (
     <div className={styles.avatarWrapper}>
-      <span className={styles.name}>Hanni</span>
+      <span className={styles.name}>{session?.user.name}</span>
       <Avatar icon="pi pi-user" size="large" shape="circle" />
     </div>
   );

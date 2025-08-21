@@ -15,7 +15,7 @@ datasource db {
 
 model Users{
   id Int @id @default(autoincrement())
-  username String @db.VarChar(40)
+  username String @db.VarChar(40) @unique
   password String @db.VarChar(40)
   email String? @db.VarChar(250)
   acc_level_id Int? @db.Int

@@ -31,11 +31,10 @@ const Options: NextAuthOptions = {
         if (!credentials?.username || !credentials.password) {
           throw new Error("Missing username or password");
         }
-
         const user = await db.users.findUnique({
-          where: { username: credentials.username },
+            where: { username: credentials.username },
         });
-        return{user}
+
 
         if (!user) {
           throw new Error("No user found with this username");

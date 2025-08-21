@@ -50,9 +50,8 @@ function Login_Panel() {
       toast.current?.show({
         severity: "error",
         summary: "Login Failed",
-        detail: "Invalid username or password",
+        detail: result?.error,
       });
-      setForgetDialogVisible(true);
     } else {
       router.push("/foodDashboard");
     }

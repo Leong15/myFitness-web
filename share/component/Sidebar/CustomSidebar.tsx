@@ -5,11 +5,12 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Dropdown } from "primereact/dropdown";
 import { Avatar } from 'primereact/avatar';  
 import { Button } from 'primereact/button';
-import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import { ConfirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
 import { Splitter, SplitterPanel } from 'primereact/splitter';
 import ChangePasswordDialog from './ChangePasswordDialog';
 import styles from '../../css/Sidebar.module.css';
+import { signOut, useSession } from 'next-auth/react';
 
 interface IHealth_Info {
     age: number;
@@ -20,6 +21,8 @@ interface IHealth_Info {
 const CustomSidebar = (props: { to_visible: boolean, onHide: any }) => {
     const toast = useRef(null);
 
+    const { data: session } = useSession();
+    
     const [bmr, setBmr] = useState<number>(0);
     const [tdee, setTdee] = useState<number>(0);
     const [selectedLifeStyle, setSelectedLifeStyle] = useState(null);
@@ -91,12 +94,16 @@ const CustomSidebar = (props: { to_visible: boolean, onHide: any }) => {
         setTdee(Math.round((b * numForlifeStyle)));
     };
 
+    const handleLogout = () => {
+        signOut({ callbackUrl: "/login" });
+    };
+
     const customIcons = (
         <React.Fragment>
             <Toast ref={toast} />
             <ConfirmDialog />
             <div className="card flex flex-wrap gap-2 justify-content-center">
-                <Button label="Log out" link />
+                <Button label="Log out" link onClick={handleLogout} />
             </div>
         </React.Fragment>
     );
@@ -105,7 +112,7 @@ const CustomSidebar = (props: { to_visible: boolean, onHide: any }) => {
         <Sidebar
             visible={props.to_visible}
             onHide={props.onHide}
-            header={<div><Avatar icon="pi pi-user" size="large" shape="circle" /><strong className={styles.headerText}>Amy</strong></div>}
+            header={<div><Avatar icon="pi pi-user" size="large" shape="circle" /><strong className={styles.headerText}>{session?.user.name}</strong></div>}
             icons={customIcons}
             className={styles.sidebar}
         >
