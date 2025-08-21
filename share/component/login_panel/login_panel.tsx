@@ -11,13 +11,14 @@ import React, { useEffect, useRef } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
+import ForgetPassword_dialog from "../forgetPassword_dialog/ForgetPassword_dialog";
 
 interface FormData {
   username: string;
   password: string;
 }
 
-const endpoint = "http://localhost";
+
 
 function Login_Panel() {
   const toast = useRef<Toast>(null);
@@ -43,8 +44,6 @@ function Login_Panel() {
       username: data.username,
       password: data.password,
     });
-
-    console.log(data);
 
     if (result?.error) {
       toast.current?.show({
@@ -148,16 +147,8 @@ function Login_Panel() {
         </form>
       </Panel>
 
-      {/* Forget Password Dialog */}
-      <Dialog
-        header="Forgot Password"
-        visible={forgetDialogVisible}
-        style={{ width: "50vw" }}
-        onHide={handleClose}
-      >
-        <p>Please contact support to reset your password.</p>
-        <Button label="Close" onClick={handleClose} />
-      </Dialog>
+
+      <ForgetPassword_dialog open={forgetDialogVisible} onClose={handleClose}/>
     </div>
   );
 }
