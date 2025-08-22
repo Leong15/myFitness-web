@@ -1,23 +1,39 @@
+.navContainer {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .scrollContainer {
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   padding: 1rem;
-  gap: 1.5rem; /* Increased gap between items */
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
-  position: relative; /* Ensure buttons are positioned relative to this container */
-  width: 100%;
+  gap: 1.5rem;
+  scrollbar-width: none;
+  width: 90%;
+  justify-content: flex-start;
+}
+
+.scrollContainer.noScroll {
+  justify-content: space-around;
+  overflow-x: hidden;
 }
 
 .scrollContainer::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Chrome, Safari */
+  display: none;
 }
 
 .navItem {
   flex: 0 0 auto;
-  width: 50px; /* Adjust based on your design */
-  height: 50px;
+  width: 80px;
+  height: 80px;
   scroll-snap-align: start;
   border: 1px solid #e0e0e0;
   border-radius: 50px;
@@ -28,17 +44,21 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.navTitle {
-  font-size: 0.5rem;
+.navItem:hover {
+  background-color: #666;
 }
 
-/* Style for PrimeReact buttons to ensure visibility */
+.navTitle {
+  font-size: 0.5rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
 .p-button {
-  background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
   border: 1px solid #e0e0e0;
   color: #333;
   transition: opacity 0.3s;
-  z-index: 20; /* Ensure buttons are above other elements */
+  z-index: 20;
 }
 
 .p-button:hover {
@@ -51,45 +71,60 @@
   cursor: not-allowed;
 }
 
-/* Ensure buttons are not clipped by container */
 .p-button-rounded {
   width: 40px;
   height: 40px;
 }
 
+.scrollButton {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #e0e0e0;
+  color: #333;
+  transition: opacity 0.3s;
+  z-index: 1001;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrollButton:hover {
+  background: rgba(255, 255, 255, 1);
+  opacity: 0.9;
+}
+
+.leftButton {
+  position: absolute;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.rightButton {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
 @media (max-width: 600px) {
   .scrollContainer {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    padding: 1rem;
-    gap: 10rem;
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    justify-content: flex-start;
+    padding: 0.5rem;
+    gap: 1rem;
+    width: 100%;
+  }
+  .scrollContainer.noScroll {
+    justify-content: space-around;
+    overflow-x: hidden;
   }
   .navItem {
-    flex: 0 0 auto;
-    width: 50px; /* Adjust based on your design */
-    height: 50px;
-    scroll-snap-align: start;
-    border: 1px solid #e0e0e0;
-    border-radius: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 60px;
+    height: 60px;
   }
   .navTitle {
-    font-size: 0.5rem;
+    font-size: 0.4rem;
   }
 }
-
-/* .navImage {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-} */

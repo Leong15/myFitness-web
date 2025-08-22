@@ -1,4 +1,5 @@
 import ScrollableNav from "../../../../share/component/scrollableNav/ScrollableNav";
+import styles from "../../../../share/css/Food.module.css";
 
 const navItems = [
   { id: 1, title: "Record", iconName: "TbWriting" },
@@ -8,9 +9,11 @@ const navItems = [
 
 export default function FoodDashboard() {
   return (
-    <>
+    <div className={styles.foodDashboard}>
       <p>Food Dashboard</p>
-      <ScrollableNav items={navItems} />
-    </>
+      <div className={styles.foodFooter}>
+        <ScrollableNav items={navItems} />
+      </div>
+    </div>
   );
 }
