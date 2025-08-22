@@ -1,4 +1,4 @@
-export default function GymChecking() {
+export default function ExerciseSchedule() {
   return (
 <>
       <p>Gym Checking</p>

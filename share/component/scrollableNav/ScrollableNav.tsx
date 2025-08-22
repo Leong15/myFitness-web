@@ -7,11 +7,13 @@ import { TbWriting } from "react-icons/tb";
 import { BsRobot } from "react-icons/bs";
 import { LuScanBarcode } from "react-icons/lu";
 import styles from "../../css/ScrollableNav.module.css";
+import { useRouter } from "next/navigation";
 
 interface NavItem {
   id: number;
   title: string;
   iconName?: string;
+  router?: string;
 }
 
 interface ScrollableNavProps {
@@ -30,6 +32,7 @@ const ScrollableNav: React.FC<ScrollableNavProps> = ({ items }) => {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [needsScroll, setNeedsScroll] = useState(true);
+  const router = useRouter();
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
@@ -54,6 +57,10 @@ const ScrollableNav: React.FC<ScrollableNavProps> = ({ items }) => {
       setNeedsScroll(scrollWidth > clientWidth);
     }
   };
+
+  const switchPage = (path:string) =>{
+    router.push(path);
+  }
 
   useEffect(() => {
     const checkMobileAndScroll = () => {
@@ -86,7 +93,7 @@ const ScrollableNav: React.FC<ScrollableNavProps> = ({ items }) => {
           const IconComponent = item.iconName ? iconMap[item.iconName] : null;
           return (
             <div key={item.id} className={styles.navItemWrapper}>
-              <div className={styles.navItem}>
+              <div className={styles.navItem} onClick={() => item.router && switchPage(item.router)}>
                 {IconComponent ? (
                   <IconComponent
                     className={styles.navIcon}

@@ -1,9 +1,9 @@
-.foodDashboard {
+.content {
   min-height: 100vh;
   padding-bottom: 120px; /* Ensure content is not hidden behind the fixed navbar */
 }
 
-.foodFooter {
+.footer {
   position: fixed;
   bottom: 0;
   left: 0;

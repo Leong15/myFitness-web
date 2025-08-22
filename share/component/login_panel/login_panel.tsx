@@ -34,7 +34,7 @@ function Login_Panel() {
   // Redirect if authenticated
   useEffect(() => {
     if (status === "authenticated") {
-      router.push("/foodDashboard");
+      router.push("/dietDashboard");
     }
   }, [status, router]);
 
@@ -52,7 +52,7 @@ function Login_Panel() {
         detail: result?.error,
       });
     } else {
-      router.push("/foodDashboard");
+      router.push("/dietDashboard");
     }
   };
 

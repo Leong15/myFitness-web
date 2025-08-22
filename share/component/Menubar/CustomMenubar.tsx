@@ -36,17 +36,17 @@ function CustomMenubar() {
 
   const items = [
     {
-      label: 'Food',
+      label: 'Diet',
       icon: <FaUtensils className={`${styles.icon}`} />,
       command: () => {
-        router.push('/foodDashboard');
+        router.push('/dietDashboard');
       },
     },
     {
-      label: 'Gym',
+      label: 'Exercise',
       icon: <GiWeightLiftingUp className={`${styles.icon}`} />,
       command: () => {
-        router.push('/gymDashboard');
+        router.push('/exerciseDashboard');
       },
     },
   ];
