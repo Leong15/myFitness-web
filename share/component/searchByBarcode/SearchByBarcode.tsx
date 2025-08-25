@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState,useContext  } from "react";
-import {Carousel, CarouselResponsiveOption} from 'primereact/carousel'
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "primereact/button";
 
@@ -65,50 +64,11 @@ export default function SearchByBarcode() {
     },
   });
 
-  const responsiveOptions: CarouselResponsiveOption[] = [
-      {
-          breakpoint: '2607px',
-          numVisible: 3,
-          numScroll: 5
-      },
-      {
-          breakpoint: '1000px',
-          numVisible: 3,
-          numScroll: 3
-      },
-      {
-          breakpoint: '600px',
-          numVisible: 1,
-          numScroll: 1
-      }
-  ];
-  
-  const products = [{ 
-      name:'test1', fat:'51', kcal:'50', id: '1' 
-    },
-    {
-      name:'test2', fat:'41', kcal:'', id: '2'
-    },
-        {
-      name:'test3', fat:'', kcal:'12', id: '3'
-    },
-    {
-      name:'test4', fat:'55', kcal:'23', id: '4'
-    },
-    {
-      name:'test5', fat:'11', kcal:'42', id: '5'
-    },
-  ]
-
-
     async function onSubmit(
       data: FormData,
       event?: React.BaseSyntheticEvent
     ): Promise<void> {
       try {
-        // Log form data
-        console.log('Submitted Data:', data);
-
         // Fetch nutritional data from Open Food Facts API if barcode is provided
         if (data.barcode) {
           const response = await fetch(
@@ -139,25 +99,6 @@ export default function SearchByBarcode() {
       }
     }
 
-  const productTemplate = (product:Product) => {
-      return (
-          <div className="border-1 surface-border border-round m-2 text-center py-5 px-3">
-              <div className="mb-3">
-      
-              </div>
-              <div>
-                  <h4 className="mb-1">{product.name}</h4>
-                  <h6 className="mt-0 mb-3">{product.kcal}</h6>
-                  <h6 className="mt-0 mb-3">{product.fat}</h6>
-                  <div className="mt-5 flex flex-wrap gap-2 justify-content-center">
-                      <Button icon="pi pi-search" className="p-button p-button-rounded" />
-                      <Button icon="pi pi-star-fill" className="p-button-success p-button-rounded" />
-                  </div>
-              </div>
-          </div>
-      );
-  };
-
 return (
     <div>
       <h1>Track Food Intake By Barcode</h1>
@@ -170,7 +111,7 @@ return (
             placeholder="Enter barcode for nutrition lookup"
           />
         </div>
-        <button type="submit">Submit</button>
+        <Button type="submit">Submit</Button>
       </form>
         <div>
           <label>產品名稱: </label>
@@ -216,7 +157,6 @@ return (
           <label>國家: </label>
           <b>{countries}</b>
         </div>
-        <Carousel value={products} numVisible={3} numScroll={3} responsiveOptions={responsiveOptions} itemTemplate={productTemplate} />
     </div>
   );
 }

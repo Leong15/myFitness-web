@@ -1,0 +1,15 @@
+css.weekly-calendar .p-datepicker-calendar {
+    /* Ensure the calendar table doesn't show unnecessary padding/margins */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.weekly-calendar .p-datepicker-calendar thead {
+    /* Keep the header (days of the week) visible */
+    display: table-header-group !important;
+}
+
+.weekly-calendar .p-datepicker-calendar tbody tr {
+    /* Default to hidden, shown only for the selected week */
+    display: none !important;
+}
